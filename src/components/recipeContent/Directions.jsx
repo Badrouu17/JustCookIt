@@ -9,7 +9,7 @@ const Directions = ({ publisher, source }) => {
         <span className="recipe__by"> {publisher} </span>. Please check out
         directions at their website.
       </p>
-      <a className="btn-small recipe__btn" href={source}>
+      <a target="_blank" className="btn-small recipe__btn" href={source}>
         <span>Directions</span>
         <svg className="search__icon">
           <use href="img/icons.svg#icon-triangle-right"></use>
