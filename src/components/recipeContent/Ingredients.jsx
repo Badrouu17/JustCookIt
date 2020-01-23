@@ -56,16 +56,25 @@ const Ingredients = ({ content }) => {
 
       const arrIng = ingredient.split(" ");
       const unitIndex = arrIng.findIndex(el2 => units.includes(el2));
-
       let objIng;
       if (unitIndex > -1) {
-        const arrCount = arrIng.slice(0, unitIndex);
-
+        let arrCount = arrIng.slice(0, unitIndex);
         let count;
         if (arrCount.length === 1) {
-          count = eval(arrIng[0].replace("-", "+"));
+          if (arrIng[0].endsWith("+")) {
+            count = eval(arrIng[0].replace("+", ""));
+          } else {
+            count = eval(arrIng[0].replace("-", "+"));
+          }
         } else {
-          count = eval(arrIng.slice(0, unitIndex).join("+"));
+          if (arrCount[0].length > 3) {
+            arrCount.shift();
+          }
+          if (arrCount.length > 2) {
+            arrCount = [arrCount[0]];
+          }
+
+          count = eval(arrCount.join("+"));
         }
 
         objIng = {

@@ -35,7 +35,7 @@ class Results extends Component {
             recipesPaginated.map(
               ({ title, publisher, image_url, recipe_id }) => (
                 <ResultsItem
-                  key={recipe_id}
+                  key={recipe_id + Math.floor(Math.random() * 100) + 1}
                   id={recipe_id}
                   img={image_url}
                   title={title}
@@ -100,7 +100,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Results);
+export default connect(mapStateToProps, mapDispatchToProps)(Results);
