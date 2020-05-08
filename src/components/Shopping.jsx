@@ -5,11 +5,7 @@ class Shopping extends Component {
     return (
       <div className="shopping">
         <div className="copyright">
-          &copy; by Badreddin Laabed. Powered by
-          <a href="http://food2fork.com" className="link">
-            Food2Fork.com
-          </a>
-          .
+          &copy; Built with ❤ by Badreddin Laabed.
         </div>
       </div>
     );
