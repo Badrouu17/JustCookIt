@@ -5,7 +5,7 @@ class Shopping extends Component {
     return (
       <div className="shopping">
         <div className="copyright">
-          &copy; Built with ❤ by Badreddin Laabed.
+          &copy; Built with ❤ by Badreddin Labed.
         </div>
       </div>
     );
