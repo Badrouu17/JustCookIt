@@ -2,13 +2,13 @@ import React from "react";
 import { Fraction } from "fractional";
 
 const Ingredients = ({ content }) => {
-  const formatCount = count => {
+  const formatCount = (count) => {
     if (count) {
       const newCount = Math.round(count * 10000) / 10000;
       const [int, dec] = newCount
         .toString()
         .split(".")
-        .map(el => parseInt(el, 10));
+        .map((el) => parseInt(el, 10));
 
       if (!dec) return newCount;
 
@@ -24,6 +24,7 @@ const Ingredients = ({ content }) => {
   };
 
   const parseIngredients = () => {
+    if (!content) return [];
     const unitsLong = [
       "tablespoons",
       "tablespoon",
@@ -32,7 +33,7 @@ const Ingredients = ({ content }) => {
       "teaspoons",
       "teaspoon",
       "cups",
-      "pounds"
+      "pounds",
     ];
     const unitsShort = [
       "tbsp",
@@ -42,11 +43,11 @@ const Ingredients = ({ content }) => {
       "tsp",
       "tsp",
       "cup",
-      "pound"
+      "pound",
     ];
     const units = [...unitsShort, "kg", "g"];
 
-    const newContent = content.map(el => {
+    const newContent = content.map((el) => {
       let ingredient = el.toLowerCase();
       unitsLong.forEach((unit, i) => {
         ingredient = ingredient.replace(unit, unitsShort[i]);
@@ -55,7 +56,7 @@ const Ingredients = ({ content }) => {
       ingredient = ingredient.replace(/ *\([^)]*\) */g, " ");
 
       const arrIng = ingredient.split(" ");
-      const unitIndex = arrIng.findIndex(el2 => units.includes(el2));
+      const unitIndex = arrIng.findIndex((el2) => units.includes(el2));
       let objIng;
       if (unitIndex > -1) {
         let arrCount = arrIng.slice(0, unitIndex);
@@ -80,19 +81,19 @@ const Ingredients = ({ content }) => {
         objIng = {
           count,
           unit: arrIng[unitIndex],
-          ingredient: arrIng.slice(unitIndex + 1).join(" ")
+          ingredient: arrIng.slice(unitIndex + 1).join(" "),
         };
       } else if (parseInt(arrIng[0], 10)) {
         objIng = {
           count: parseInt(arrIng[0], 10),
           unit: "",
-          ingredient: arrIng.slice(1).join(" ")
+          ingredient: arrIng.slice(1).join(" "),
         };
       } else if (unitIndex === -1) {
         objIng = {
           count: 1,
           unit: "",
-          ingredient
+          ingredient,
         };
       }
 

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import Fig from "./recipeContent/Fig";
 import Details from "./recipeContent/Details";
-import Ingredients from "./recipeContent/Ingredients";
+// import Ingredients from "./recipeContent/Ingredients";
 import Directions from "./recipeContent/Directions";
 import Louder from "./louder";
 
@@ -15,10 +15,10 @@ class Recipe extends Component {
         title,
         publisher,
         source_url: source,
-        ingredients
+        ingredients,
       } = this.props.currentRecipe;
 
-      var time = ingredients.length * 5;
+      var time = ingredients ? ingredients.length * 5 : 20;
     }
 
     return (
@@ -28,7 +28,7 @@ class Recipe extends Component {
           <React.Fragment>
             <Fig title={title} img={img}></Fig>
             <Details time={time}></Details>
-            <Ingredients content={ingredients}></Ingredients>
+            {/* <Ingredients content={ingredients}></Ingredients> */}
             <Directions publisher={publisher} source={source}></Directions>
           </React.Fragment>
         )}
@@ -37,10 +37,10 @@ class Recipe extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     currentRecipe: state.currentRecipe,
-    loading: state.recipeLoading
+    loading: state.recipeLoading,
   };
 };
 
